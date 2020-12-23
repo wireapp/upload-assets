@@ -9074,7 +9074,7 @@ const glob = __webpack_require__(1957)
       return
     }
 
-    core.debug(`assetPaths are ${assetPaths}`)
+    console.log(`assetPaths are ${assetPaths}`)
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN)
@@ -9104,7 +9104,7 @@ const glob = __webpack_require__(1957)
     const expandPath = pathSpec => pathSpec.includes('*') ? glob.sync(pathSpec) : pathSpec
     const paths = assetPaths.flatMap(expandPath)
 
-    core.debug(`Expanded paths: ${paths}`)
+    console.log(`Expanded paths: ${paths}`)
 
     const browserDownloadURLs = paths.map(async asset => {
       // Determine content-length for header to upload asset
