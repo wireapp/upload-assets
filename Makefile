@@ -1,2 +1,0 @@
-ncc build src
-

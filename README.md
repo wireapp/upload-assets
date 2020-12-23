@@ -21,10 +21,11 @@ This action aims to resolve several outstanding user requests with [@actions/upl
 You must provide:
 
 * `asset_paths` - the paths to the assets you want to upload as a JSON array. You can use a glob pattern. For example `asset_paths: '["bin/*", "dist/js/*"]'`
+* `require_tag` - (default `true`) set to false if you just want it uploaded to the latest untagged release 
 
 ## Output variables
 
-*  `browser_download_urls` - the paths to download the uploaded assets
+* `browser_download_urls` - the paths to download the uploaded assets
 
 ## Example
 
@@ -46,7 +47,7 @@ jobs:
       - name: Make all
         run: make all
       - name: Upload release binaries
-        uses: alexellis/upload-assets@0.2.2
+        uses: jedahan/upload-assets@0.2.4
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -57,18 +58,13 @@ Example taken from [this sample project](https://github.com/alexellis/release-it
 
 ## Creating a new version
 
-Getting started:
+Install dependencies
 
-```bash
-npm i -g  @vercel/ncc
-```
+    npm install
 
-Build:
+Build a new version
 
-```bash
-npm i
-npm run build
-```
+    npm run build
 
 ## License
 

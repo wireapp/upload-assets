@@ -1,15 +1,18 @@
 name: 'Upload Release Assets'
 description: 'Upload release assets to an existing release in your repository, including glob support'
-author: 'alexellis'
+author: 'jedahan'
 inputs:
   asset_paths:
     description: 'The paths to the assets you want to upload as a JSON array. You can use a glob pattern.'
     required: true
+  require_tag:
+    description: 'Set to false if you dont care if the latest release is tagged'
+    default: 'true'
 outputs:
   browser_download_urls:
     description: 'The URL users can navigate to in order to download the uploaded asset'
 runs:
-  using: 'node12'
+  using: 'node14'
   main: 'dist/index.js'
 branding:
   icon: 'package'
