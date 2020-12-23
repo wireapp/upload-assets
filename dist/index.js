@@ -9074,6 +9074,8 @@ const glob = __webpack_require__(1957)
       return
     }
 
+    core.debug(`assetPaths: ${assetPaths}`)
+
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN)
 
@@ -9099,7 +9101,7 @@ const glob = __webpack_require__(1957)
       })
     })
 
-    const expandPath = path => path.contains('*') ? glob.sync(path) : path
+    const expandPath = path => path.includes('*') ? glob.sync(path) : path
     const paths = assetPaths.flatMap(expandPath)
 
     core.debug(`Expanded paths: ${paths}`)
