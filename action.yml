@@ -12,7 +12,7 @@ outputs:
   browser_download_urls:
     description: 'The URL users can navigate to in order to download the uploaded asset'
 runs:
-  using: 'node14'
+  using: 'node12'
   main: 'dist/index.js'
 branding:
   icon: 'package'
