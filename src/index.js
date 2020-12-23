@@ -16,7 +16,7 @@ const glob = require('glob')
       return
     }
 
-    core.debug(`assetPaths: ${assetPaths}`)
+    core.debug(`assetPaths are ${assetPaths}`)
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN)
@@ -25,8 +25,8 @@ const glob = require('glob')
 
     // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
     // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-create-release
-    const latestRelease = (async () => {
-      if (core.getInput('require_tag') == 'false') {
+    const latestRelease = await (async () => {
+      if (core.getInput('require_tag') === 'false') {
         return await octokit.repos.getLatestRelease({
           owner,
           repo,
@@ -41,7 +41,7 @@ const glob = require('glob')
         repo,
         tag,
       })
-    })
+    })()
 
     const expandPath = path => path.includes('*') ? glob.sync(path) : path
     const paths = assetPaths.flatMap(expandPath)
