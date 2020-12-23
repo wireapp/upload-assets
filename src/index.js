@@ -46,7 +46,7 @@ const glob = require('glob')
 
     core.debug(`Expanded paths: ${paths}`)
 
-    const browserDownloadURLs = paths.map(asset => {
+    const browserDownloadURLs = paths.map(async asset => {
       // Determine content-length for header to upload asset
       const contentLength = filePath => fs.statSync(filePath).size
       const contentType = "binary/octet-stream"

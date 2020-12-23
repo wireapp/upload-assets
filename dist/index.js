@@ -2,7 +2,7 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5183:
+/***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -16,7 +16,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const os = __importStar(__webpack_require__(2087));
-const utils_1 = __webpack_require__(8091);
+const utils_1 = __webpack_require__(5278);
 /**
  * Commands
  *
@@ -88,7 +88,7 @@ function escapeProperty(s) {
 
 /***/ }),
 
-/***/ 2619:
+/***/ 2186:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -110,9 +110,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const command_1 = __webpack_require__(5183);
-const file_command_1 = __webpack_require__(5939);
-const utils_1 = __webpack_require__(8091);
+const command_1 = __webpack_require__(7351);
+const file_command_1 = __webpack_require__(717);
+const utils_1 = __webpack_require__(5278);
 const os = __importStar(__webpack_require__(2087));
 const path = __importStar(__webpack_require__(5622));
 /**
@@ -333,7 +333,7 @@ exports.getState = getState;
 
 /***/ }),
 
-/***/ 5939:
+/***/ 717:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -351,7 +351,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const fs = __importStar(__webpack_require__(5747));
 const os = __importStar(__webpack_require__(2087));
-const utils_1 = __webpack_require__(8091);
+const utils_1 = __webpack_require__(5278);
 function issueCommand(command, message) {
     const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
@@ -369,7 +369,7 @@ exports.issueCommand = issueCommand;
 
 /***/ }),
 
-/***/ 8091:
+/***/ 5278:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -395,7 +395,7 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
-/***/ 4377:
+/***/ 4087:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -452,7 +452,7 @@ exports.Context = Context;
 
 /***/ }),
 
-/***/ 4637:
+/***/ 5438:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -478,8 +478,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getOctokit = exports.context = void 0;
-const Context = __importStar(__webpack_require__(4377));
-const utils_1 = __webpack_require__(497);
+const Context = __importStar(__webpack_require__(4087));
+const utils_1 = __webpack_require__(3030);
 exports.context = new Context.Context();
 /**
  * Returns a hydrated octokit ready to use for GitHub Actions
@@ -495,7 +495,7 @@ exports.getOctokit = getOctokit;
 
 /***/ }),
 
-/***/ 5943:
+/***/ 7914:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -521,7 +521,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getApiBaseUrl = exports.getProxyAgent = exports.getAuthString = void 0;
-const httpClient = __importStar(__webpack_require__(1709));
+const httpClient = __importStar(__webpack_require__(9925));
 function getAuthString(token, options) {
     if (!token && !options.auth) {
         throw new Error('Parameter token or opts.auth is required');
@@ -545,7 +545,7 @@ exports.getApiBaseUrl = getApiBaseUrl;
 
 /***/ }),
 
-/***/ 497:
+/***/ 3030:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -571,12 +571,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getOctokitOptions = exports.GitHub = exports.context = void 0;
-const Context = __importStar(__webpack_require__(4377));
-const Utils = __importStar(__webpack_require__(5943));
+const Context = __importStar(__webpack_require__(4087));
+const Utils = __importStar(__webpack_require__(7914));
 // octokit + plugins
-const core_1 = __webpack_require__(8852);
-const plugin_rest_endpoint_methods_1 = __webpack_require__(1647);
-const plugin_paginate_rest_1 = __webpack_require__(293);
+const core_1 = __webpack_require__(6762);
+const plugin_rest_endpoint_methods_1 = __webpack_require__(3044);
+const plugin_paginate_rest_1 = __webpack_require__(4193);
 exports.context = new Context.Context();
 const baseUrl = Utils.getApiBaseUrl();
 const defaults = {
@@ -606,7 +606,7 @@ exports.getOctokitOptions = getOctokitOptions;
 
 /***/ }),
 
-/***/ 1709:
+/***/ 9925:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -614,7 +614,7 @@ exports.getOctokitOptions = getOctokitOptions;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const http = __webpack_require__(8605);
 const https = __webpack_require__(7211);
-const pm = __webpack_require__(382);
+const pm = __webpack_require__(6443);
 let tunnel;
 var HttpCodes;
 (function (HttpCodes) {
@@ -1033,7 +1033,7 @@ class HttpClient {
         if (useProxy) {
             // If using proxy, need tunnel
             if (!tunnel) {
-                tunnel = __webpack_require__(6237);
+                tunnel = __webpack_require__(4294);
             }
             const agentOptions = {
                 maxSockets: maxSockets,
@@ -1149,7 +1149,7 @@ exports.HttpClient = HttpClient;
 
 /***/ }),
 
-/***/ 382:
+/***/ 6443:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1214,7 +1214,7 @@ exports.checkBypass = checkBypass;
 
 /***/ }),
 
-/***/ 9261:
+/***/ 334:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1271,7 +1271,7 @@ exports.createTokenAuth = createTokenAuth;
 
 /***/ }),
 
-/***/ 8852:
+/***/ 6762:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1279,11 +1279,11 @@ exports.createTokenAuth = createTokenAuth;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var universalUserAgent = __webpack_require__(4757);
-var beforeAfterHook = __webpack_require__(7150);
-var request = __webpack_require__(2751);
-var graphql = __webpack_require__(7613);
-var authToken = __webpack_require__(9261);
+var universalUserAgent = __webpack_require__(5030);
+var beforeAfterHook = __webpack_require__(3682);
+var request = __webpack_require__(6234);
+var graphql = __webpack_require__(8467);
+var authToken = __webpack_require__(334);
 
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
@@ -1321,7 +1321,7 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 
-const VERSION = "3.2.1";
+const VERSION = "3.2.4";
 
 class Octokit {
   constructor(options = {}) {
@@ -1453,7 +1453,7 @@ exports.Octokit = Octokit;
 
 /***/ }),
 
-/***/ 3017:
+/***/ 9440:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1461,8 +1461,8 @@ exports.Octokit = Octokit;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var isPlainObject = __webpack_require__(8875);
-var universalUserAgent = __webpack_require__(4757);
+var isPlainObject = __webpack_require__(3287);
+var universalUserAgent = __webpack_require__(5030);
 
 function lowercaseKeys(object) {
   if (!object) {
@@ -1825,7 +1825,7 @@ function withDefaults(oldDefaults, newDefaults) {
   });
 }
 
-const VERSION = "6.0.9";
+const VERSION = "6.0.10";
 
 const userAgent = `octokit-endpoint.js/${VERSION} ${universalUserAgent.getUserAgent()}`; // DEFAULTS has all properties set that EndpointOptions has, except url.
 // So we use RequestParameters and add method as additional required property.
@@ -1851,7 +1851,7 @@ exports.endpoint = endpoint;
 
 /***/ }),
 
-/***/ 7613:
+/***/ 8467:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1859,10 +1859,10 @@ exports.endpoint = endpoint;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var request = __webpack_require__(2751);
-var universalUserAgent = __webpack_require__(4757);
+var request = __webpack_require__(6234);
+var universalUserAgent = __webpack_require__(5030);
 
-const VERSION = "4.5.7";
+const VERSION = "4.5.8";
 
 class GraphqlError extends Error {
   constructor(request, response) {
@@ -1967,7 +1967,7 @@ exports.withCustomRequest = withCustomRequest;
 
 /***/ }),
 
-/***/ 293:
+/***/ 4193:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1975,7 +1975,7 @@ exports.withCustomRequest = withCustomRequest;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-const VERSION = "2.6.0";
+const VERSION = "2.6.2";
 
 /**
  * Some “list” response that can be paginated have a different response structure
@@ -2107,7 +2107,7 @@ exports.paginateRest = paginateRest;
 
 /***/ }),
 
-/***/ 1647:
+/***/ 3044:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -2133,13 +2133,24 @@ const Endpoints = {
     deleteSelfHostedRunnerFromRepo: ["DELETE /repos/{owner}/{repo}/actions/runners/{runner_id}"],
     deleteWorkflowRun: ["DELETE /repos/{owner}/{repo}/actions/runs/{run_id}"],
     deleteWorkflowRunLogs: ["DELETE /repos/{owner}/{repo}/actions/runs/{run_id}/logs"],
+    disableSelectedRepositoryGithubActionsOrganization: ["DELETE /orgs/{org}/actions/permissions/repositories/{repository_id}"],
+    disableWorkflow: ["PUT /repos/{owner}/{repo}/actions/workflows/{workflow_id}/disable"],
     downloadArtifact: ["GET /repos/{owner}/{repo}/actions/artifacts/{artifact_id}/{archive_format}"],
     downloadJobLogsForWorkflowRun: ["GET /repos/{owner}/{repo}/actions/jobs/{job_id}/logs"],
     downloadWorkflowRunLogs: ["GET /repos/{owner}/{repo}/actions/runs/{run_id}/logs"],
+    enableSelectedRepositoryGithubActionsOrganization: ["PUT /orgs/{org}/actions/permissions/repositories/{repository_id}"],
+    enableWorkflow: ["PUT /repos/{owner}/{repo}/actions/workflows/{workflow_id}/enable"],
+    getAllowedActionsOrganization: ["GET /orgs/{org}/actions/permissions/selected-actions"],
+    getAllowedActionsRepository: ["GET /repos/{owner}/{repo}/actions/permissions/selected-actions"],
     getArtifact: ["GET /repos/{owner}/{repo}/actions/artifacts/{artifact_id}"],
+    getGithubActionsPermissionsOrganization: ["GET /orgs/{org}/actions/permissions"],
+    getGithubActionsPermissionsRepository: ["GET /repos/{owner}/{repo}/actions/permissions"],
     getJobForWorkflowRun: ["GET /repos/{owner}/{repo}/actions/jobs/{job_id}"],
     getOrgPublicKey: ["GET /orgs/{org}/actions/secrets/public-key"],
     getOrgSecret: ["GET /orgs/{org}/actions/secrets/{secret_name}"],
+    getRepoPermissions: ["GET /repos/{owner}/{repo}/actions/permissions", {}, {
+      renamed: ["actions", "getGithubActionsPermissionsRepository"]
+    }],
     getRepoPublicKey: ["GET /repos/{owner}/{repo}/actions/secrets/public-key"],
     getRepoSecret: ["GET /repos/{owner}/{repo}/actions/secrets/{secret_name}"],
     getSelfHostedRunnerForOrg: ["GET /orgs/{org}/actions/runners/{runner_id}"],
@@ -2156,6 +2167,7 @@ const Endpoints = {
     listRunnerApplicationsForOrg: ["GET /orgs/{org}/actions/runners/downloads"],
     listRunnerApplicationsForRepo: ["GET /repos/{owner}/{repo}/actions/runners/downloads"],
     listSelectedReposForOrgSecret: ["GET /orgs/{org}/actions/secrets/{secret_name}/repositories"],
+    listSelectedRepositoriesEnabledGithubActionsOrganization: ["GET /orgs/{org}/actions/permissions/repositories"],
     listSelfHostedRunnersForOrg: ["GET /orgs/{org}/actions/runners"],
     listSelfHostedRunnersForRepo: ["GET /repos/{owner}/{repo}/actions/runners"],
     listWorkflowRunArtifacts: ["GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts"],
@@ -2163,7 +2175,12 @@ const Endpoints = {
     listWorkflowRunsForRepo: ["GET /repos/{owner}/{repo}/actions/runs"],
     reRunWorkflow: ["POST /repos/{owner}/{repo}/actions/runs/{run_id}/rerun"],
     removeSelectedRepoFromOrgSecret: ["DELETE /orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}"],
-    setSelectedReposForOrgSecret: ["PUT /orgs/{org}/actions/secrets/{secret_name}/repositories"]
+    setAllowedActionsOrganization: ["PUT /orgs/{org}/actions/permissions/selected-actions"],
+    setAllowedActionsRepository: ["PUT /repos/{owner}/{repo}/actions/permissions/selected-actions"],
+    setGithubActionsPermissionsOrganization: ["PUT /orgs/{org}/actions/permissions"],
+    setGithubActionsPermissionsRepository: ["PUT /repos/{owner}/{repo}/actions/permissions"],
+    setSelectedReposForOrgSecret: ["PUT /orgs/{org}/actions/secrets/{secret_name}/repositories"],
+    setSelectedRepositoriesEnabledGithubActionsOrganization: ["PUT /orgs/{org}/actions/permissions/repositories"]
   },
   activity: {
     checkRepoIsStarredByAuthenticatedUser: ["GET /user/starred/{owner}/{repo}"],
@@ -2219,6 +2236,7 @@ const Endpoints = {
     getSubscriptionPlanForAccount: ["GET /marketplace_listing/accounts/{account_id}"],
     getSubscriptionPlanForAccountStubbed: ["GET /marketplace_listing/stubbed/accounts/{account_id}"],
     getUserInstallation: ["GET /users/{username}/installation"],
+    getWebhookConfigForApp: ["GET /app/hook/config"],
     listAccountsForPlan: ["GET /marketplace_listing/plans/{plan_id}/accounts"],
     listAccountsForPlanStubbed: ["GET /marketplace_listing/stubbed/plans/{plan_id}/accounts"],
     listInstallationReposForAuthenticatedUser: ["GET /user/installations/{installation_id}/repositories"],
@@ -2233,7 +2251,8 @@ const Endpoints = {
     resetToken: ["PATCH /applications/{client_id}/token"],
     revokeInstallationAccessToken: ["DELETE /installation/token"],
     suspendInstallation: ["PUT /app/installations/{installation_id}/suspended"],
-    unsuspendInstallation: ["DELETE /app/installations/{installation_id}/suspended"]
+    unsuspendInstallation: ["DELETE /app/installations/{installation_id}/suspended"],
+    updateWebhookConfigForApp: ["PATCH /app/hook/config"]
   },
   billing: {
     getGithubActionsBillingOrg: ["GET /orgs/{org}/settings/billing/actions"],
@@ -2244,61 +2263,17 @@ const Endpoints = {
     getSharedStorageBillingUser: ["GET /users/{username}/settings/billing/shared-storage"]
   },
   checks: {
-    create: ["POST /repos/{owner}/{repo}/check-runs", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    createSuite: ["POST /repos/{owner}/{repo}/check-suites", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    get: ["GET /repos/{owner}/{repo}/check-runs/{check_run_id}", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    getSuite: ["GET /repos/{owner}/{repo}/check-suites/{check_suite_id}", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    listAnnotations: ["GET /repos/{owner}/{repo}/check-runs/{check_run_id}/annotations", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    listForRef: ["GET /repos/{owner}/{repo}/commits/{ref}/check-runs", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    listForSuite: ["GET /repos/{owner}/{repo}/check-suites/{check_suite_id}/check-runs", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    listSuitesForRef: ["GET /repos/{owner}/{repo}/commits/{ref}/check-suites", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    rerequestSuite: ["POST /repos/{owner}/{repo}/check-suites/{check_suite_id}/rerequest", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    setSuitesPreferences: ["PATCH /repos/{owner}/{repo}/check-suites/preferences", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }],
-    update: ["PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}", {
-      mediaType: {
-        previews: ["antiope"]
-      }
-    }]
+    create: ["POST /repos/{owner}/{repo}/check-runs"],
+    createSuite: ["POST /repos/{owner}/{repo}/check-suites"],
+    get: ["GET /repos/{owner}/{repo}/check-runs/{check_run_id}"],
+    getSuite: ["GET /repos/{owner}/{repo}/check-suites/{check_suite_id}"],
+    listAnnotations: ["GET /repos/{owner}/{repo}/check-runs/{check_run_id}/annotations"],
+    listForRef: ["GET /repos/{owner}/{repo}/commits/{ref}/check-runs"],
+    listForSuite: ["GET /repos/{owner}/{repo}/check-suites/{check_suite_id}/check-runs"],
+    listSuitesForRef: ["GET /repos/{owner}/{repo}/commits/{ref}/check-suites"],
+    rerequestSuite: ["POST /repos/{owner}/{repo}/check-suites/{check_suite_id}/rerequest"],
+    setSuitesPreferences: ["PATCH /repos/{owner}/{repo}/check-suites/preferences"],
+    update: ["PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}"]
   },
   codeScanning: {
     getAlert: ["GET /repos/{owner}/{repo}/code-scanning/alerts/{alert_number}", {}, {
@@ -2330,6 +2305,16 @@ const Endpoints = {
   },
   emojis: {
     get: ["GET /emojis"]
+  },
+  enterpriseAdmin: {
+    disableSelectedOrganizationGithubActionsEnterprise: ["DELETE /enterprises/{enterprise}/actions/permissions/organizations/{org_id}"],
+    enableSelectedOrganizationGithubActionsEnterprise: ["PUT /enterprises/{enterprise}/actions/permissions/organizations/{org_id}"],
+    getAllowedActionsEnterprise: ["GET /enterprises/{enterprise}/actions/permissions/selected-actions"],
+    getGithubActionsPermissionsEnterprise: ["GET /enterprises/{enterprise}/actions/permissions"],
+    listSelectedOrganizationsEnabledGithubActionsEnterprise: ["GET /enterprises/{enterprise}/actions/permissions/organizations"],
+    setAllowedActionsEnterprise: ["PUT /enterprises/{enterprise}/actions/permissions/selected-actions"],
+    setGithubActionsPermissionsEnterprise: ["PUT /enterprises/{enterprise}/actions/permissions"],
+    setSelectedOrganizationsEnabledGithubActionsEnterprise: ["PUT /enterprises/{enterprise}/actions/permissions/organizations"]
   },
   gists: {
     checkIsStarred: ["GET /gists/{gist_id}/star"],
@@ -2373,36 +2358,15 @@ const Endpoints = {
     getTemplate: ["GET /gitignore/templates/{name}"]
   },
   interactions: {
-    getRestrictionsForOrg: ["GET /orgs/{org}/interaction-limits", {
-      mediaType: {
-        previews: ["sombra"]
-      }
-    }],
-    getRestrictionsForRepo: ["GET /repos/{owner}/{repo}/interaction-limits", {
-      mediaType: {
-        previews: ["sombra"]
-      }
-    }],
-    removeRestrictionsForOrg: ["DELETE /orgs/{org}/interaction-limits", {
-      mediaType: {
-        previews: ["sombra"]
-      }
-    }],
-    removeRestrictionsForRepo: ["DELETE /repos/{owner}/{repo}/interaction-limits", {
-      mediaType: {
-        previews: ["sombra"]
-      }
-    }],
-    setRestrictionsForOrg: ["PUT /orgs/{org}/interaction-limits", {
-      mediaType: {
-        previews: ["sombra"]
-      }
-    }],
-    setRestrictionsForRepo: ["PUT /repos/{owner}/{repo}/interaction-limits", {
-      mediaType: {
-        previews: ["sombra"]
-      }
-    }]
+    getRestrictionsForOrg: ["GET /orgs/{org}/interaction-limits"],
+    getRestrictionsForRepo: ["GET /repos/{owner}/{repo}/interaction-limits"],
+    getRestrictionsForYourPublicRepos: ["GET /user/interaction-limits"],
+    removeRestrictionsForOrg: ["DELETE /orgs/{org}/interaction-limits"],
+    removeRestrictionsForRepo: ["DELETE /repos/{owner}/{repo}/interaction-limits"],
+    removeRestrictionsForYourPublicRepos: ["DELETE /user/interaction-limits"],
+    setRestrictionsForOrg: ["PUT /orgs/{org}/interaction-limits"],
+    setRestrictionsForRepo: ["PUT /repos/{owner}/{repo}/interaction-limits"],
+    setRestrictionsForYourPublicRepos: ["PUT /user/interaction-limits"]
   },
   issues: {
     addAssignees: ["POST /repos/{owner}/{repo}/issues/{issue_number}/assignees"],
@@ -2463,7 +2427,10 @@ const Endpoints = {
     }]
   },
   meta: {
-    get: ["GET /meta"]
+    get: ["GET /meta"],
+    getOctocat: ["GET /octocat"],
+    getZen: ["GET /zen"],
+    root: ["GET /"]
   },
   migrations: {
     cancelImport: ["DELETE /repos/{owner}/{repo}/import"],
@@ -2550,6 +2517,7 @@ const Endpoints = {
     getMembershipForAuthenticatedUser: ["GET /user/memberships/orgs/{org}"],
     getMembershipForUser: ["GET /orgs/{org}/memberships/{username}"],
     getWebhook: ["GET /orgs/{org}/hooks/{hook_id}"],
+    getWebhookConfigForOrg: ["GET /orgs/{org}/hooks/{hook_id}/config"],
     list: ["GET /organizations"],
     listAppInstallations: ["GET /orgs/{org}/installations"],
     listBlockedUsers: ["GET /orgs/{org}/blocks"],
@@ -2572,7 +2540,8 @@ const Endpoints = {
     unblockUser: ["DELETE /orgs/{org}/blocks/{username}"],
     update: ["PATCH /orgs/{org}"],
     updateMembershipForAuthenticatedUser: ["PATCH /user/memberships/orgs/{org}"],
-    updateWebhook: ["PATCH /orgs/{org}/hooks/{hook_id}"]
+    updateWebhook: ["PATCH /orgs/{org}/hooks/{hook_id}"],
+    updateWebhookConfigForOrg: ["PATCH /orgs/{org}/hooks/{hook_id}/config"]
   },
   projects: {
     addCollaborator: ["PUT /projects/{project_id}/collaborators/{username}", {
@@ -2803,7 +2772,7 @@ const Endpoints = {
         previews: ["squirrel-girl"]
       }
     }, {
-      deprecated: "octokit.reactions.deleteLegacy() is deprecated, see https://developer.github.com/v3/reactions/#delete-a-reaction-legacy"
+      deprecated: "octokit.reactions.deleteLegacy() is deprecated, see https://docs.github.com/v3/reactions/#delete-a-reaction-legacy"
     }],
     listForCommitComment: ["GET /repos/{owner}/{repo}/comments/{comment_id}/reactions", {
       mediaType: {
@@ -2919,7 +2888,11 @@ const Endpoints = {
         previews: ["dorian"]
       }
     }],
-    downloadArchive: ["GET /repos/{owner}/{repo}/{archive_format}/{ref}"],
+    downloadArchive: ["GET /repos/{owner}/{repo}/zipball/{ref}", {}, {
+      renamed: ["repos", "downloadZipballArchive"]
+    }],
+    downloadTarballArchive: ["GET /repos/{owner}/{repo}/tarball/{ref}"],
+    downloadZipballArchive: ["GET /repos/{owner}/{repo}/zipball/{ref}"],
     enableAutomatedSecurityFixes: ["PUT /repos/{owner}/{repo}/automated-security-fixes", {
       mediaType: {
         previews: ["london"]
@@ -2954,11 +2927,7 @@ const Endpoints = {
         previews: ["zzzax"]
       }
     }],
-    getCommunityProfileMetrics: ["GET /repos/{owner}/{repo}/community/profile", {
-      mediaType: {
-        previews: ["black-panther"]
-      }
-    }],
+    getCommunityProfileMetrics: ["GET /repos/{owner}/{repo}/community/profile"],
     getContent: ["GET /repos/{owner}/{repo}/contents/{path}"],
     getContributorsStats: ["GET /repos/{owner}/{repo}/stats/contributors"],
     getDeployKey: ["GET /repos/{owner}/{repo}/keys/{key_id}"],
@@ -2982,6 +2951,7 @@ const Endpoints = {
     getUsersWithAccessToProtectedBranch: ["GET /repos/{owner}/{repo}/branches/{branch}/protection/restrictions/users"],
     getViews: ["GET /repos/{owner}/{repo}/traffic/views"],
     getWebhook: ["GET /repos/{owner}/{repo}/hooks/{hook_id}"],
+    getWebhookConfigForRepo: ["GET /repos/{owner}/{repo}/hooks/{hook_id}/config"],
     listBranches: ["GET /repos/{owner}/{repo}/branches"],
     listBranchesForHeadCommit: ["GET /repos/{owner}/{repo}/commits/{commit_sha}/branches-where-head", {
       mediaType: {
@@ -3061,8 +3031,12 @@ const Endpoints = {
     updatePullRequestReviewProtection: ["PATCH /repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews"],
     updateRelease: ["PATCH /repos/{owner}/{repo}/releases/{release_id}"],
     updateReleaseAsset: ["PATCH /repos/{owner}/{repo}/releases/assets/{asset_id}"],
-    updateStatusCheckPotection: ["PATCH /repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks"],
+    updateStatusCheckPotection: ["PATCH /repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks", {}, {
+      renamed: ["repos", "updateStatusCheckProtection"]
+    }],
+    updateStatusCheckProtection: ["PATCH /repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks"],
     updateWebhook: ["PATCH /repos/{owner}/{repo}/hooks/{hook_id}"],
+    updateWebhookConfigForRepo: ["PATCH /repos/{owner}/{repo}/hooks/{hook_id}/config"],
     uploadReleaseAsset: ["POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}", {
       baseUrl: "https://uploads.github.com"
     }]
@@ -3083,6 +3057,11 @@ const Endpoints = {
       }
     }],
     users: ["GET /search/users"]
+  },
+  secretScanning: {
+    getAlert: ["GET /repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}"],
+    listAlertsForRepo: ["GET /repos/{owner}/{repo}/secret-scanning/alerts"],
+    updateAlert: ["PATCH /repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}"]
   },
   teams: {
     addOrUpdateMembershipForUserInOrg: ["PUT /orgs/{org}/teams/{team_slug}/memberships/{username}"],
@@ -3164,7 +3143,7 @@ const Endpoints = {
   }
 };
 
-const VERSION = "4.2.1";
+const VERSION = "4.4.1";
 
 function endpointsToMethods(octokit, endpointsMap) {
   const newMethods = {};
@@ -3269,7 +3248,7 @@ exports.restEndpointMethods = restEndpointMethods;
 
 /***/ }),
 
-/***/ 8902:
+/***/ 537:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -3279,8 +3258,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var deprecation = __webpack_require__(5675);
-var once = _interopDefault(__webpack_require__(2654));
+var deprecation = __webpack_require__(8932);
+var once = _interopDefault(__webpack_require__(1223));
 
 const logOnce = once(deprecation => console.warn(deprecation));
 /**
@@ -3332,7 +3311,7 @@ exports.RequestError = RequestError;
 
 /***/ }),
 
-/***/ 2751:
+/***/ 6234:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -3342,13 +3321,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var endpoint = __webpack_require__(3017);
-var universalUserAgent = __webpack_require__(4757);
-var isPlainObject = __webpack_require__(8875);
-var nodeFetch = _interopDefault(__webpack_require__(5401));
-var requestError = __webpack_require__(8902);
+var endpoint = __webpack_require__(9440);
+var universalUserAgent = __webpack_require__(5030);
+var isPlainObject = __webpack_require__(3287);
+var nodeFetch = _interopDefault(__webpack_require__(467));
+var requestError = __webpack_require__(537);
 
-const VERSION = "5.4.10";
+const VERSION = "5.4.12";
 
 function getBufferResponse(response) {
   return response.arrayBuffer();
@@ -3488,7 +3467,7 @@ exports.request = request;
 
 /***/ }),
 
-/***/ 8294:
+/***/ 9417:
 /***/ ((module) => {
 
 "use strict";
@@ -3555,12 +3534,12 @@ function range(a, b, str) {
 
 /***/ }),
 
-/***/ 7150:
+/***/ 3682:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var register = __webpack_require__(5506)
-var addHook = __webpack_require__(8637)
-var removeHook = __webpack_require__(4335)
+var register = __webpack_require__(4670)
+var addHook = __webpack_require__(5549)
+var removeHook = __webpack_require__(6819)
 
 // bind with array of arguments: https://stackoverflow.com/a/21792913
 var bind = Function.bind
@@ -3619,7 +3598,7 @@ module.exports.Collection = Hook.Collection
 
 /***/ }),
 
-/***/ 8637:
+/***/ 5549:
 /***/ ((module) => {
 
 module.exports = addHook
@@ -3672,7 +3651,7 @@ function addHook (state, kind, name, hook) {
 
 /***/ }),
 
-/***/ 5506:
+/***/ 4670:
 /***/ ((module) => {
 
 module.exports = register
@@ -3707,7 +3686,7 @@ function register (state, name, method, options) {
 
 /***/ }),
 
-/***/ 4335:
+/***/ 6819:
 /***/ ((module) => {
 
 module.exports = removeHook
@@ -3731,11 +3710,11 @@ function removeHook (state, name, method) {
 
 /***/ }),
 
-/***/ 6423:
+/***/ 3717:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var concatMap = __webpack_require__(9767);
-var balanced = __webpack_require__(8294);
+var concatMap = __webpack_require__(6891);
+var balanced = __webpack_require__(9417);
 
 module.exports = expandTop;
 
@@ -3939,7 +3918,7 @@ function expand(str, isTop) {
 
 /***/ }),
 
-/***/ 9767:
+/***/ 6891:
 /***/ ((module) => {
 
 module.exports = function (xs, fn) {
@@ -3959,7 +3938,7 @@ var isArray = Array.isArray || function (xs) {
 
 /***/ }),
 
-/***/ 5675:
+/***/ 8932:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -3987,7 +3966,7 @@ exports.Deprecation = Deprecation;
 
 /***/ }),
 
-/***/ 6477:
+/***/ 6863:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = realpath
@@ -4003,7 +3982,7 @@ var origRealpathSync = fs.realpathSync
 
 var version = process.version
 var ok = /^v[0-5]\./.test(version)
-var old = __webpack_require__(866)
+var old = __webpack_require__(1734)
 
 function newError (er) {
   return er && er.syscall === 'realpath' && (
@@ -4060,7 +4039,7 @@ function unmonkeypatch () {
 
 /***/ }),
 
-/***/ 866:
+/***/ 1734:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -4370,7 +4349,7 @@ exports.realpath = function realpath(p, cache, cb) {
 
 /***/ }),
 
-/***/ 7324:
+/***/ 7625:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 exports.alphasort = alphasort
@@ -4388,8 +4367,8 @@ function ownProp (obj, field) {
 }
 
 var path = __webpack_require__(5622)
-var minimatch = __webpack_require__(6587)
-var isAbsolute = __webpack_require__(8526)
+var minimatch = __webpack_require__(3973)
+var isAbsolute = __webpack_require__(8714)
 var Minimatch = minimatch.Minimatch
 
 function alphasorti (a, b) {
@@ -4617,7 +4596,7 @@ function childrenIgnored (self, path) {
 
 /***/ }),
 
-/***/ 7140:
+/***/ 1957:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Approach:
@@ -4663,26 +4642,26 @@ function childrenIgnored (self, path) {
 module.exports = glob
 
 var fs = __webpack_require__(5747)
-var rp = __webpack_require__(6477)
-var minimatch = __webpack_require__(6587)
+var rp = __webpack_require__(6863)
+var minimatch = __webpack_require__(3973)
 var Minimatch = minimatch.Minimatch
-var inherits = __webpack_require__(3930)
+var inherits = __webpack_require__(4124)
 var EE = __webpack_require__(8614).EventEmitter
 var path = __webpack_require__(5622)
 var assert = __webpack_require__(2357)
-var isAbsolute = __webpack_require__(8526)
-var globSync = __webpack_require__(5004)
-var common = __webpack_require__(7324)
+var isAbsolute = __webpack_require__(8714)
+var globSync = __webpack_require__(9010)
+var common = __webpack_require__(7625)
 var alphasort = common.alphasort
 var alphasorti = common.alphasorti
 var setopts = common.setopts
 var ownProp = common.ownProp
-var inflight = __webpack_require__(604)
+var inflight = __webpack_require__(2492)
 var util = __webpack_require__(1669)
 var childrenIgnored = common.childrenIgnored
 var isIgnored = common.isIgnored
 
-var once = __webpack_require__(2654)
+var once = __webpack_require__(1223)
 
 function glob (pattern, options, cb) {
   if (typeof options === 'function') cb = options, options = {}
@@ -5414,22 +5393,22 @@ Glob.prototype._stat2 = function (f, abs, er, stat, cb) {
 
 /***/ }),
 
-/***/ 5004:
+/***/ 9010:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = globSync
 globSync.GlobSync = GlobSync
 
 var fs = __webpack_require__(5747)
-var rp = __webpack_require__(6477)
-var minimatch = __webpack_require__(6587)
+var rp = __webpack_require__(6863)
+var minimatch = __webpack_require__(3973)
 var Minimatch = minimatch.Minimatch
-var Glob = __webpack_require__(7140).Glob
+var Glob = __webpack_require__(1957).Glob
 var util = __webpack_require__(1669)
 var path = __webpack_require__(5622)
 var assert = __webpack_require__(2357)
-var isAbsolute = __webpack_require__(8526)
-var common = __webpack_require__(7324)
+var isAbsolute = __webpack_require__(8714)
+var common = __webpack_require__(7625)
 var alphasort = common.alphasort
 var alphasorti = common.alphasorti
 var setopts = common.setopts
@@ -5907,12 +5886,12 @@ GlobSync.prototype._makeAbs = function (f) {
 
 /***/ }),
 
-/***/ 604:
+/***/ 2492:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var wrappy = __webpack_require__(1999)
+var wrappy = __webpack_require__(2940)
 var reqs = Object.create(null)
-var once = __webpack_require__(2654)
+var once = __webpack_require__(1223)
 
 module.exports = wrappy(inflight)
 
@@ -5968,7 +5947,7 @@ function slice (args) {
 
 /***/ }),
 
-/***/ 3930:
+/***/ 4124:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 try {
@@ -5978,13 +5957,13 @@ try {
   module.exports = util.inherits;
 } catch (e) {
   /* istanbul ignore next */
-  module.exports = __webpack_require__(8696);
+  module.exports = __webpack_require__(8544);
 }
 
 
 /***/ }),
 
-/***/ 8696:
+/***/ 8544:
 /***/ ((module) => {
 
 if (typeof Object.create === 'function') {
@@ -6018,7 +5997,7 @@ if (typeof Object.create === 'function') {
 
 /***/ }),
 
-/***/ 8875:
+/***/ 3287:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -6064,7 +6043,7 @@ exports.isPlainObject = isPlainObject;
 
 /***/ }),
 
-/***/ 6587:
+/***/ 3973:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = minimatch
@@ -6076,7 +6055,7 @@ try {
 } catch (er) {}
 
 var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
-var expand = __webpack_require__(6423)
+var expand = __webpack_require__(3717)
 
 var plTypes = {
   '!': { open: '(?:(?!(?:', close: '))[^/]*?)'},
@@ -6994,7 +6973,7 @@ function regExpEscape (s) {
 
 /***/ }),
 
-/***/ 5401:
+/***/ 467:
 /***/ ((module, exports, __webpack_require__) => {
 
 "use strict";
@@ -7159,7 +7138,7 @@ FetchError.prototype.name = 'FetchError';
 
 let convert;
 try {
-	convert = __webpack_require__(7254).convert;
+	convert = __webpack_require__(2877).convert;
 } catch (e) {}
 
 const INTERNALS = Symbol('Body internals');
@@ -8651,10 +8630,10 @@ exports.FetchError = FetchError;
 
 /***/ }),
 
-/***/ 2654:
+/***/ 1223:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var wrappy = __webpack_require__(1999)
+var wrappy = __webpack_require__(2940)
 module.exports = wrappy(once)
 module.exports.strict = wrappy(onceStrict)
 
@@ -8700,7 +8679,7 @@ function onceStrict (fn) {
 
 /***/ }),
 
-/***/ 8526:
+/***/ 8714:
 /***/ ((module) => {
 
 "use strict";
@@ -8728,15 +8707,15 @@ module.exports.win32 = win32;
 
 /***/ }),
 
-/***/ 6237:
+/***/ 4294:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__(2576);
+module.exports = __webpack_require__(4219);
 
 
 /***/ }),
 
-/***/ 2576:
+/***/ 4219:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -9008,7 +8987,7 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 4757:
+/***/ 5030:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9034,7 +9013,7 @@ exports.getUserAgent = getUserAgent;
 
 /***/ }),
 
-/***/ 1999:
+/***/ 2940:
 /***/ ((module) => {
 
 // Returns a wrapper function that returns a wrapped callback
@@ -9074,159 +9053,93 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 5176:
-/***/ ((module) => {
-
-class GetRelease {
-    constructor(octokit, context) {
-        this.octokit = octokit
-        this.context = context;
-    }
-
-    async getURL() {
-        // Get owner and repo from context of payload that triggered the action
-        const { owner, repo } = this.context.repo;
-        // Get the tag name from the triggered action
-        const tagName = this.context.ref;
-    
-        // This removes the 'refs/tags' portion of the string, i.e. from 'refs/tags/v1.10.15' to 'v1.10.15'
-        const tag = tagName.replace("refs/tags/", "");
-
-        // Get a release from the tag name
-        // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
-        // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-create-release
-        const getReleaseResponse = await this.octokit.repos.getReleaseByTag({
-            owner,
-            repo,
-            tag
-        });
-
-        const uploadURL = getReleaseResponse.data.upload_url
-        return uploadURL;
-    }
-}
-
-module.exports = GetRelease
-
-// const github = require('@actions/github');
-
-// async function runMe() {
-
-//     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
-//     const octokit = github.getOctokit("");
-//     const getRelease = new GetRelease(octokit, {
-//         ref: "refs/tags/0.1.19",
-//         repo: {
-//           repo: "release-it",
-//           owner:"alexellis",
-//         }
-//     })
-//     const uploadUrl = await getRelease.getURL()
-//     console.log(uploadUrl)
-//   }
-
-//   runMe()
-
-/***/ }),
-
-/***/ 6336:
+/***/ 4351:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-const run = __webpack_require__(6623);
+const core = __webpack_require__(2186)
+const github = __webpack_require__(5438)
 
-run();
+const fs = __webpack_require__(5747)
+const path = __webpack_require__(5622)
+const glob = __webpack_require__(1957)
 
-
-/***/ }),
-
-/***/ 6623:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-const core = __webpack_require__(2619);
-const github = __webpack_require__(4637);
-
-const path = __webpack_require__(5622);
-const fs = __webpack_require__(5747);
-const { pathToFileURL } = __webpack_require__(8835);
-const GetRelease = __webpack_require__(5176)
-const glob = __webpack_require__(7140)
-
-async function run() {
+(async () => {
   try {
-    // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-    const getRelease = new GetRelease(octokit, github.context)
-
-    const uploadUrl = await getRelease.getURL()
-
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
-    const assetPathsSt = core.getInput('asset_paths', { required: true });
+    const assetPathsInput = core.getInput('asset_paths', { required: true })
 
-    const assetPaths = JSON.parse(assetPathsSt)
+    const assetPaths = JSON.parse(assetPathsInput)
     if(!assetPaths || assetPaths.length == 0) {
-      core.setFailed("asset_paths must contain a JSON array of quoted paths");
+      core.setFailed("asset_paths must contain a JSON array of quoted paths")
       return
     }
 
-    let paths = []
-    for(let i = 0; i < assetPaths.length; i++) {
-      let assetPath = assetPaths[i];
-      if(assetPath.indexOf("*") > -1) {
-        const files = glob.sync(assetPath)
-          for (const file of files) {
-            paths.push(file)
-        }
-      }else {
-        paths.push(assetPath)
+    // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
+    const octokit = github.getOctokit(process.env.GITHUB_TOKEN)
+
+    const { owner, repo } = github.context.repo
+
+    // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
+    // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-create-release
+    const latestRelease = (async () => {
+      if (core.getInput('require_tag') == 'false') {
+        return await octokit.repos.getLatestRelease({
+          owner,
+          repo,
+        })
       }
-    }
+
+      const tagName = github.context.ref
+      // This removes the 'refs/tags' portion of the string, i.e. from 'refs/tags/v1.10.15' to 'v1.10.15'
+      const tag = tagName.replace("refs/tags/", "")
+      return octokit.repos.getLatestReleaseByTag({
+        owner,
+        repo,
+        tag,
+      })
+    })
+
+    const expandPath = path => path.contains('*') ? glob.sync(path) : path
+    const paths = assetPaths.flatMap(expandPath)
 
     core.debug(`Expanded paths: ${paths}`)
 
-    downloadURLs = []
-    for(let i = 0; i < paths.length; i++) {
-      let asset = paths[i];
-
+    const browserDownloadURLs = paths.map(async asset => {
       // Determine content-length for header to upload asset
-      const contentLength = filePath => fs.statSync(filePath).size;
+      const contentLength = filePath => fs.statSync(filePath).size
       const contentType = "binary/octet-stream"
       // Setup headers for API call, see Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset for more information
-      const headers = { 'content-type': contentType, 'content-length': contentLength(asset) };
+      const headers = { 'content-type': contentType, 'content-length': contentLength(asset) }
   
-      const assetName = path.basename(asset)
-      console.log(`Uploading ${assetName}`)
+      const name = path.basename(asset)
+      console.log(`Uploading ${name}`)
 
       // Upload a release asset
       // API Documentation: https://developer.github.com/v3/repos/releases/#upload-a-release-asset
       // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset
-      const uploadAssetResponse = await octokit.repos.uploadReleaseAsset({
-        url: uploadUrl,
+      const uploadedAsset = await octokit.repos.uploadReleaseAsset({
+        url: latestRelease.data.upload_url,
         headers,
-        name: assetName,
+        name,
         data: fs.readFileSync(asset)
-      });
+      })
   
       // Get the browser_download_url for the uploaded release asset from the response
-      const {
-        data: { browser_download_url: browserDownloadUrl }
-      } = uploadAssetResponse;
-  
-      // Set the output variable for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
-      downloadURLs.push(browserDownloadUrl)
-    }
+      return uploadedAsset.data.browser_download_url
+    })
 
-    core.setOutput('browser_download_urls', JSON.stringify(downloadURLs));
+    // Set the output variable for use by other actions
+    // https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
+    core.setOutput('browser_download_urls', JSON.stringify(browserDownloadURLs))
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed(error.message)
   }
-}
-
-module.exports = run;
+})()
 
 
 /***/ }),
 
-/***/ 7254:
+/***/ 2877:
 /***/ ((module) => {
 
 module.exports = eval("require")("encoding");
@@ -9238,7 +9151,7 @@ module.exports = eval("require")("encoding");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("assert");
+module.exports = require("assert");;
 
 /***/ }),
 
@@ -9246,7 +9159,7 @@ module.exports = require("assert");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("events");
+module.exports = require("events");;
 
 /***/ }),
 
@@ -9254,7 +9167,7 @@ module.exports = require("events");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("fs");
+module.exports = require("fs");;
 
 /***/ }),
 
@@ -9262,7 +9175,7 @@ module.exports = require("fs");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("http");
+module.exports = require("http");;
 
 /***/ }),
 
@@ -9270,7 +9183,7 @@ module.exports = require("http");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("https");
+module.exports = require("https");;
 
 /***/ }),
 
@@ -9278,7 +9191,7 @@ module.exports = require("https");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("net");
+module.exports = require("net");;
 
 /***/ }),
 
@@ -9286,7 +9199,7 @@ module.exports = require("net");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("os");
+module.exports = require("os");;
 
 /***/ }),
 
@@ -9294,7 +9207,7 @@ module.exports = require("os");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("path");
+module.exports = require("path");;
 
 /***/ }),
 
@@ -9302,7 +9215,7 @@ module.exports = require("path");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("stream");
+module.exports = require("stream");;
 
 /***/ }),
 
@@ -9310,7 +9223,7 @@ module.exports = require("stream");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("tls");
+module.exports = require("tls");;
 
 /***/ }),
 
@@ -9318,7 +9231,7 @@ module.exports = require("tls");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("url");
+module.exports = require("url");;
 
 /***/ }),
 
@@ -9326,7 +9239,7 @@ module.exports = require("url");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("util");
+module.exports = require("util");;
 
 /***/ }),
 
@@ -9334,7 +9247,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("zlib");
+module.exports = require("zlib");;
 
 /***/ })
 
@@ -9376,6 +9289,6 @@ module.exports = require("zlib");
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(6336);
+/******/ 	return __webpack_require__(4351);
 /******/ })()
 ;

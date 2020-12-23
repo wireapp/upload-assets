@@ -1,6 +1,6 @@
 # upload-assets
 
-GitHub Action to upload multiple assets to a release
+GitHub Action to upload multiple assets to a release. Based off of @alexellis/upload-release-assets.
 
 ## Features
 
