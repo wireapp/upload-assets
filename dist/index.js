@@ -9101,7 +9101,7 @@ const glob = __webpack_require__(1957)
       })
     })()
 
-    const expandPath = path => path.includes('*') ? glob.sync(path) : path
+    const expandPath = pathSpec => pathSpec.includes('*') ? glob.sync(pathSpec) : pathSpec
     const paths = assetPaths.flatMap(expandPath)
 
     core.debug(`Expanded paths: ${paths}`)
