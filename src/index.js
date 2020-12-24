@@ -1,22 +1,14 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
+const glob = require('@actions/glob')
 
 const fs = require('fs')
 const path = require('path')
-const glob = require('glob')
 
 (async () => {
   try {
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const assetPathsInput = core.getInput('asset_paths', { required: true })
-
-    const assetPaths = JSON.parse(assetPathsInput)
-    if(!assetPaths || assetPaths.length == 0) {
-      core.setFailed("asset_paths must contain a JSON array of quoted paths")
-      return
-    }
-
-    console.log(`assetPaths are ${assetPaths}`)
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN)
@@ -43,12 +35,12 @@ const glob = require('glob')
       })
     })()
 
-    const expandPath = pathSpec => pathSpec.includes('*') ? glob.sync(pathSpec) : pathSpec
-    const paths = assetPaths.flatMap(expandPath)
+    const globber = await glob.create(assetPathsInput)
+    const files = await globber.glob()
 
-    console.log(`Expanded paths: ${paths}`)
+    console.log(`Matching files: ${files}`)
 
-    const browserDownloadURLs = paths.map(async asset => {
+    const browserDownloadURLs = files.map(async asset => {
       // Determine content-length for header to upload asset
       const contentLength = filePath => fs.statSync(filePath).size
       const contentType = "binary/octet-stream"

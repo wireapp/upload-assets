@@ -20,8 +20,14 @@ This action aims to resolve several outstanding user requests with [@actions/upl
 
 You must provide:
 
-* `asset_paths` - the paths to the assets you want to upload as a JSON array. You can use a glob pattern. For example `asset_paths: '["bin/*", "dist/js/*"]'`
-* `require_tag` - (default `true`) set to false if you just want it uploaded to the latest untagged release 
+* `require_tag` - (default `true`) only upload to tagged releases
+* `asset_paths` - paths to the assets to upload. supports glob patterns.
+
+```yaml
+asset_paths: |
+        bin/*
+        dist/js/*
+```
 
 ## Output variables
 
@@ -51,7 +57,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          asset_paths: '["./bin/release-it*"]'
+          asset_paths: |
+                  bin/*
+                  dist/js/*
 ```
 
 Example taken from [this sample project](https://github.com/alexellis/release-it/blob/master/.github/workflows/publish.yaml).

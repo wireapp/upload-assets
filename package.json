@@ -1,6 +1,6 @@
 {
   "name": "@jedahan/upload-assets",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "GitHub Action to upload multiple assets to a release",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
-    "glob": "^7.1.6"
+    "@actions/glob": "^0.1.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.26.1"
