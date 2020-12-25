@@ -1,26 +1,17 @@
 # upload-assets
 
-GitHub Action to upload multiple assets to a release. Based off of @alexellis/upload-release-assets.
+GitHub Action to upload multiple assets to a release.
 
-## Features
+Based off of [@alexellis/upload-assets](https://github.com/alexellis/upload-assets) and [@actions/upload-release-asset](https://github.com/actions/upload-release-asset), with some improvements:
 
-This action aims to resolve several outstanding user requests with [@actions/upload-release-asset](https://github.com/actions/upload-release-asset).
-
-* Getting the latest release tag for upload
-* Globbing i.e. `./bin/*`
-* Succinct - no need to populate content_type and a separate path input
-
-## Built for developers by developers
-
-<a href="https://github.com/sponsors/alexellis/">
-<img alt="Sponsor this project" src="https://github.com/alexellis/alexellis/blob/master/sponsor-today.png" width="65%" height="65%">
-</a>
+* Adds globbing support for file paths (i.e. `./bin/*`)
+* Finds the latest release tag for upload
+* Populates content_type and paths automatically
 
 ## Input variables
 
-You must provide:
+You *must* provide
 
-* `require_tag` - (default `true`) only upload to tagged releases
 * `asset_paths` - paths to the assets to upload. supports glob patterns.
 
 ```yaml
@@ -29,9 +20,13 @@ asset_paths: |
         dist/js/*
 ```
 
+You *may* provide
+
+* `require_tag` - (default `true`) only upload to tagged releases. Setting this to `false` will add artifacts to the latest release even if its untagged.
+
 ## Output variables
 
-* `browser_download_urls` - the paths to download the uploaded assets
+* `browser_download_urls` - the paths to download any uploaded assets
 
 ## Example
 
@@ -48,12 +43,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-        with:
-          fetch-depth: 1
-      - name: Make all
-        run: make all
+
+      - name: build
+        run: make
+
       - name: Upload release binaries
-        uses: jedahan/upload-assets@0.2.4
+        uses: jedahan/upload-assets@0.3.1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -61,23 +56,3 @@ jobs:
                   bin/*
                   dist/js/*
 ```
-
-Example taken from [this sample project](https://github.com/alexellis/release-it/blob/master/.github/workflows/publish.yaml).
-
-## Creating a new version
-
-Install dependencies
-
-    npm install
-
-Build a new version
-
-    npm run build
-
-## License
-
-MIT
-
-Any contributions must be proposed via a GitHub issue before being worked on.
-
-You should also use `git commit -s` and follow the [DCO](https://developercertificate.org)
