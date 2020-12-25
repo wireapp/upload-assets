@@ -1,6 +1,6 @@
 {
   "name": "@jedahan/upload-assets",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "GitHub Action to upload multiple assets to a release",
   "main": "index.js",
   "scripts": {

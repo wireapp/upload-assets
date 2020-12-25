@@ -5,7 +5,7 @@ const glob = require('@actions/glob')
 const fs = require('fs')
 const path = require('path')
 
-(async () => {
+async function run() {
   try {
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const assetPathsInput = core.getInput('asset_paths', { required: true })
@@ -70,4 +70,6 @@ const path = require('path')
   } catch (error) {
     core.setFailed(error.message)
   }
-})()
+}
+
+run()

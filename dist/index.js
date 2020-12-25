@@ -7985,7 +7985,7 @@ const glob = __webpack_require__(8090)
 const fs = __webpack_require__(5747)
 const path = __webpack_require__(5622)
 
-(async () => {
+async function run() {
   try {
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const assetPathsInput = core.getInput('asset_paths', { required: true })
@@ -8050,7 +8050,9 @@ const path = __webpack_require__(5622)
   } catch (error) {
     core.setFailed(error.message)
   }
-})()
+}
+
+run()
 
 
 /***/ }),
