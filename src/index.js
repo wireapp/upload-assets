@@ -38,7 +38,7 @@ async function run() {
     const globber = await glob.create(assetPathsInput)
     const files = await globber.glob()
 
-    console.log(`Matching files: ${files}`)
+    core.debug(`Matching files: ${files}`)
 
     const browserDownloadURLs = files.map(async asset => {
       // Determine content-length for header to upload asset
