@@ -10,9 +10,9 @@ Based off of [@alexellis/upload-assets](https://github.com/alexellis/upload-asse
 
 ## Input variables
 
-You *must* provide
+You *must* provide `asset_paths`
 
-* `asset_paths` - paths to the assets to upload. supports glob patterns.
+Paths to the assets to upload, supports glob patterns.
 
 ```yaml
 asset_paths: |
@@ -20,13 +20,15 @@ asset_paths: |
         dist/js/*
 ```
 
-You *may* provide
+You *may* provide `require_tag` (defaults to `true`)
 
-* `require_tag` - (default `true`) only upload to tagged releases. Setting this to `false` will add artifacts to the latest release even if its untagged.
+Only upload to tagged releases. Setting this to `false` will add artifacts to the latest release even if its untagged.
 
 ## Output variables
 
-* `browser_download_urls` - the paths to download any uploaded assets
+This action will populate `browser_download_urls`
+
+`browser_download_urls` - array of urls to download any uploaded assets.
 
 ## Example
 
