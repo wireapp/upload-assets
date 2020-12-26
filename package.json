@@ -1,18 +1,23 @@
 {
   "name": "@jedahan/upload-assets",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "description": "GitHub Action to upload multiple assets to a release",
-  "main": "index.js",
+  "main": "uploadAssets.js",
   "scripts": {
-    "build": "ncc build src"
+    "build": "ncc build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jedahan/upload-assets.git"
   },
-  "keywords": [],
+  "keywords": [
+    "ci",
+    "github",
+    "actions",
+    "release"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jedahan/upload-assets/issues"
   },

@@ -7975,7 +7975,7 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 4351:
+/***/ 8905:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 const core = __webpack_require__(2186)
@@ -7985,7 +7985,7 @@ const glob = __webpack_require__(8090)
 const fs = __webpack_require__(5747)
 const path = __webpack_require__(5622)
 
-async function run() {
+async function uploadAssets() {
   try {
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const assetPathsInput = core.getInput('asset_paths', { required: true })
@@ -8018,7 +8018,7 @@ async function run() {
     const globber = await glob.create(assetPathsInput)
     const files = await globber.glob()
 
-    console.log(`Matching files: ${files}`)
+    core.debug(`Matching files: ${files}`)
 
     const browserDownloadURLs = files.map(async asset => {
       // Determine content-length for header to upload asset
@@ -8052,7 +8052,7 @@ async function run() {
   }
 }
 
-run()
+uploadAssets()
 
 
 /***/ }),
@@ -8207,6 +8207,6 @@ module.exports = require("zlib");;
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(4351);
+/******/ 	return __webpack_require__(8905);
 /******/ })()
 ;

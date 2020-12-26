@@ -5,7 +5,7 @@ const glob = require('@actions/glob')
 const fs = require('fs')
 const path = require('path')
 
-async function run() {
+async function uploadAssets() {
   try {
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const assetPathsInput = core.getInput('asset_paths', { required: true })
@@ -72,4 +72,4 @@ async function run() {
   }
 }
 
-run()
+uploadAssets()
