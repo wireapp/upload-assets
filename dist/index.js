@@ -8008,7 +8008,7 @@ async function uploadAssets() {
       const tagName = github.context.ref
       // This removes the 'refs/tags' portion of the string, i.e. from 'refs/tags/v1.10.15' to 'v1.10.15'
       const tag = tagName.replace("refs/tags/", "")
-      return octokit.repos.getLatestReleaseByTag({
+      return octokit.repos.getLatestRelease({
         owner,
         repo,
         tag,
@@ -8026,7 +8026,7 @@ async function uploadAssets() {
       const contentType = "binary/octet-stream"
       // Setup headers for API call, see Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset for more information
       const headers = { 'content-type': contentType, 'content-length': contentLength(asset) }
-  
+
       const name = path.basename(asset)
       console.log(`Uploading ${name}`)
 
@@ -8039,7 +8039,7 @@ async function uploadAssets() {
         name,
         data: fs.readFileSync(asset)
       })
-  
+
       // Get the browser_download_url for the uploaded release asset from the response
       return uploadedAsset.data.browser_download_url
     })
