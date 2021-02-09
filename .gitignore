@@ -1,1 +1,8 @@
+.DS_Store
+.Icon
+.vscode
+*.log
+*.pkg
+coverage
+.nyc_output
 node_modules

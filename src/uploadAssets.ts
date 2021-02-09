@@ -64,4 +64,5 @@ async function uploadAssets() {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 uploadAssets();

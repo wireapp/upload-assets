@@ -1,3 +1,6 @@
 {
-  "extends": "@wireapp/eslint-config"
+  "extends": "@wireapp/eslint-config",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  }
 }
