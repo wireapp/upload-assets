@@ -2,20 +2,6 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 283:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports =
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ 283:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports =
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -8003,69 +7989,67 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 8905:
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
+/***/ 4775:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
-const core = __nccwpck_require__(2186);
-const github = __nccwpck_require__(5438);
-const glob = __nccwpck_require__(8090);
+"use strict";
 
-const fs = __nccwpck_require__(5747);
-const path = __nccwpck_require__(5622);
-
-async function uploadAssets() {
-  try {
-    // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
-    const assetPathsInput = core.getInput('asset_paths', {required: true});
-    const uploadUrlInput = core.getInput('upload_url', {required: true});
-
-    // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-
-    const globber = await glob.create(assetPathsInput);
-    const files = await globber.glob();
-
-    core.debug(`Matching files: ${files}`);
-    console.info(`Upload URL: ${uploadUrlInput}`);
-
-    const browserDownloadURLs = await Promise.all(
-      files.map(async asset => {
-        // Determine content-length for header to upload asset
-        const contentLength = filePath => fs.statSync(filePath).size;
-        const contentType = 'binary/octet-stream';
-        // Setup headers for API call, see Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset for more information
-        const headers = {
-          'content-length': contentLength(asset),
-          'content-type': contentType,
-        };
-
-        const name = path.basename(asset);
-        console.info(`Uploading ${name}`);
-
-        // Upload a release asset
-        // API Documentation: https://developer.github.com/v3/repos/releases/#upload-a-release-asset
-        // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset
-        const uploadedAsset = await octokit.repos.uploadReleaseAsset({
-          data: fs.readFileSync(asset),
-          headers,
-          name,
-          url: uploadUrlInput,
-        });
-
-        // Get the browser_download_url for the uploaded release asset from the response
-        return uploadedAsset.data.browser_download_url;
-      }),
-    );
-
-    // Set the output variable for use by other actions
-    // https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
-    core.setOutput('browser_download_urls', JSON.stringify(browserDownloadURLs));
-  } catch (error) {
-    console.error(error);
-    core.setFailed(error.message);
-  }
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __importDefault(__nccwpck_require__(2186));
+const github_1 = __importDefault(__nccwpck_require__(5438));
+const glob_1 = __importDefault(__nccwpck_require__(8090));
+const fs_1 = __importDefault(__nccwpck_require__(5747));
+const path_1 = __importDefault(__nccwpck_require__(5622));
+const contentLength = (filePath) => __awaiter(void 0, void 0, void 0, function* () { return (yield fs_1.default.promises.stat(filePath)).size; });
+const readFile = (filePath) => __awaiter(void 0, void 0, void 0, function* () { return fs_1.default.promises.readFile(filePath); });
+function uploadAssets() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            if (!process.env.GITHUB_TOKEN) {
+                throw new Error('Not GITHUB_TOKEN environment variable specified');
+            }
+            const assetPathsInput = core_1.default.getInput('asset_paths', { required: true });
+            const uploadUrlInput = core_1.default.getInput('upload_url', { required: true });
+            const octokit = github_1.default.getOctokit(process.env.GITHUB_TOKEN);
+            const globber = yield glob_1.default.create(assetPathsInput);
+            const files = yield globber.glob();
+            core_1.default.debug(`Matching files: ${files}`);
+            const browserDownloadURLs = yield Promise.all(files.map((filePath) => __awaiter(this, void 0, void 0, function* () {
+                const contentType = 'binary/octet-stream';
+                const headers = {
+                    'content-length': yield contentLength(filePath),
+                    'content-type': contentType,
+                };
+                const name = path_1.default.basename(filePath);
+                console.info(`Uploading ${name}`);
+                const uploadedAsset = yield octokit.repos.uploadReleaseAsset({
+                    data: yield readFile(filePath),
+                    headers,
+                    name,
+                    url: uploadUrlInput,
+                });
+                return uploadedAsset.data.browser_download_url;
+            })));
+            core_1.default.setOutput('browser_download_urls', JSON.stringify(browserDownloadURLs));
+        }
+        catch (error) {
+            console.error(error);
+            core_1.default.setFailed(error.message);
+        }
+    });
 }
-
 uploadAssets();
 
 
@@ -8083,7 +8067,7 @@ module.exports = eval("require")("encoding");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(357);;
+module.exports = require("assert");;
 
 /***/ }),
 
@@ -8091,7 +8075,7 @@ module.exports = __nccwpck_require__(357);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(614);;
+module.exports = require("events");;
 
 /***/ }),
 
@@ -8099,7 +8083,7 @@ module.exports = __nccwpck_require__(614);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(747);;
+module.exports = require("fs");;
 
 /***/ }),
 
@@ -8107,7 +8091,7 @@ module.exports = __nccwpck_require__(747);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(605);;
+module.exports = require("http");;
 
 /***/ }),
 
@@ -8115,7 +8099,7 @@ module.exports = __nccwpck_require__(605);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(211);;
+module.exports = require("https");;
 
 /***/ }),
 
@@ -8123,7 +8107,7 @@ module.exports = __nccwpck_require__(211);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(631);;
+module.exports = require("net");;
 
 /***/ }),
 
@@ -8131,7 +8115,7 @@ module.exports = __nccwpck_require__(631);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(87);;
+module.exports = require("os");;
 
 /***/ }),
 
@@ -8139,7 +8123,7 @@ module.exports = __nccwpck_require__(87);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(622);;
+module.exports = require("path");;
 
 /***/ }),
 
@@ -8147,7 +8131,7 @@ module.exports = __nccwpck_require__(622);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(413);;
+module.exports = require("stream");;
 
 /***/ }),
 
@@ -8155,7 +8139,7 @@ module.exports = __nccwpck_require__(413);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(16);;
+module.exports = require("tls");;
 
 /***/ }),
 
@@ -8163,7 +8147,7 @@ module.exports = __nccwpck_require__(16);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(835);;
+module.exports = require("url");;
 
 /***/ }),
 
@@ -8171,7 +8155,7 @@ module.exports = __nccwpck_require__(835);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(669);;
+module.exports = require("util");;
 
 /***/ }),
 
@@ -8179,7 +8163,7 @@ module.exports = __nccwpck_require__(669);;
 /***/ ((module) => {
 
 "use strict";
-module.exports = __nccwpck_require__(761);;
+module.exports = require("zlib");;
 
 /***/ })
 
@@ -8221,302 +8205,6 @@ module.exports = __nccwpck_require__(761);;
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __nccwpck_require__(8905);
-/******/ })()
-;
-
-/***/ }),
-
-/***/ 357:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(357);;
-
-/***/ }),
-
-/***/ 614:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(614);;
-
-/***/ }),
-
-/***/ 747:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(747);;
-
-/***/ }),
-
-/***/ 605:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(605);;
-
-/***/ }),
-
-/***/ 211:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(211);;
-
-/***/ }),
-
-/***/ 631:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(631);;
-
-/***/ }),
-
-/***/ 87:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(87);;
-
-/***/ }),
-
-/***/ 622:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(622);;
-
-/***/ }),
-
-/***/ 413:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(413);;
-
-/***/ }),
-
-/***/ 16:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(16);;
-
-/***/ }),
-
-/***/ 835:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(835);;
-
-/***/ }),
-
-/***/ 669:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(669);;
-
-/***/ }),
-
-/***/ 761:
-/***/ ((module) => {
-
-"use strict";
-module.exports = __nccwpck_require__(761);;
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __nccwpck_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		var threw = true;
-/******/ 		try {
-/******/ 			__webpack_modules__[moduleId](module, module.exports, __nccwpck_require__);
-/******/ 			threw = false;
-/******/ 		} finally {
-/******/ 			if(threw) delete __webpack_module_cache__[moduleId];
-/******/ 		}
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat */
-/******/ 	
-/******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
-/******/ 	// module exports must be returned from runtime so entry inlining is disabled
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	return __nccwpck_require__(283);
-/******/ })()
-;
-
-/***/ }),
-
-/***/ 357:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("assert");;
-
-/***/ }),
-
-/***/ 614:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("events");;
-
-/***/ }),
-
-/***/ 747:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("fs");;
-
-/***/ }),
-
-/***/ 605:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("http");;
-
-/***/ }),
-
-/***/ 211:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("https");;
-
-/***/ }),
-
-/***/ 631:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("net");;
-
-/***/ }),
-
-/***/ 87:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("os");;
-
-/***/ }),
-
-/***/ 622:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("path");;
-
-/***/ }),
-
-/***/ 413:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("stream");;
-
-/***/ }),
-
-/***/ 16:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("tls");;
-
-/***/ }),
-
-/***/ 835:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("url");;
-
-/***/ }),
-
-/***/ 669:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("util");;
-
-/***/ }),
-
-/***/ 761:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("zlib");;
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __nccwpck_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		var threw = true;
-/******/ 		try {
-/******/ 			__webpack_modules__[moduleId](module, module.exports, __nccwpck_require__);
-/******/ 			threw = false;
-/******/ 		} finally {
-/******/ 			if(threw) delete __webpack_module_cache__[moduleId];
-/******/ 		}
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat */
-/******/ 	
-/******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
-/******/ 	// module exports must be returned from runtime so entry inlining is disabled
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	return __nccwpck_require__(283);
+/******/ 	return __nccwpck_require__(4775);
 /******/ })()
 ;
