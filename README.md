@@ -2,11 +2,7 @@
 
 GitHub Action to upload multiple assets to a release.
 
-Based on [@alexellis/upload-assets](https://github.com/alexellis/upload-assets) and [@actions/upload-release-asset](https://github.com/actions/upload-release-asset), with some improvements:
-
-- Adds globbing support for file paths (i.e. `./bin/*`)
-- Finds the latest release tag for upload
-- Populates content_type and paths automatically
+Based on [@jedahan/upload-assets](https://github.com/jedahan/upload-assets) with a re-added upload URL and some fixes.
 
 ## Input variables
 

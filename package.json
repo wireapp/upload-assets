@@ -36,12 +36,13 @@
     "release"
   ],
   "license": "MIT",
-  "main": "uploadAssets.js",
+  "main": "dist/index.js",
   "name": "@wireapp/upload-assets",
   "prettier": "@wireapp/prettier-config",
   "repository": "https://github.com/wireapp/upload-assets.git",
   "scripts": {
     "build": "ncc build",
+    "dist": "yarn build",
     "fix": "yarn fix:code && yarn fix:other",
     "fix:code": "yarn lint:code --fix",
     "fix:other": "yarn prettier --write",

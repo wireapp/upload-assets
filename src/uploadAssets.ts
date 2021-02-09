@@ -1,12 +1,18 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
-const glob = require('@actions/glob');
+import core from '@actions/core';
+import github from '@actions/github';
+import glob from '@actions/glob';
+import fs from 'fs';
+import path from 'path';
 
-const fs = require('fs');
-const path = require('path');
+const contentLength = async (filePath: string) => (await fs.promises.stat(filePath)).size;
+const readFile = async (filePath: string) => fs.promises.readFile(filePath);
 
 async function uploadAssets() {
   try {
+    if (!process.env.GITHUB_TOKEN) {
+      throw new Error('Not GITHUB_TOKEN environment variable specified');
+    }
+
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const assetPathsInput = core.getInput('asset_paths', {required: true});
     const uploadUrlInput = core.getInput('upload_url', {required: true});
@@ -18,27 +24,27 @@ async function uploadAssets() {
     const files = await globber.glob();
 
     core.debug(`Matching files: ${files}`);
-    console.info(`Upload URL: ${uploadUrlInput}`);
 
     const browserDownloadURLs = await Promise.all(
-      files.map(async asset => {
+      files.map(async filePath => {
         // Determine content-length for header to upload asset
-        const contentLength = filePath => fs.statSync(filePath).size;
         const contentType = 'binary/octet-stream';
+
         // Setup headers for API call, see Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset for more information
         const headers = {
-          'content-length': contentLength(asset),
+          'content-length': await contentLength(filePath),
           'content-type': contentType,
         };
 
-        const name = path.basename(asset);
+        const name = path.basename(filePath);
         console.info(`Uploading ${name}`);
 
         // Upload a release asset
         // API Documentation: https://developer.github.com/v3/repos/releases/#upload-a-release-asset
         // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset
         const uploadedAsset = await octokit.repos.uploadReleaseAsset({
-          data: fs.readFileSync(asset),
+          // @ts-ignore - seems like the types are wrong.
+          data: await readFile(filePath),
           headers,
           name,
           url: uploadUrlInput,
