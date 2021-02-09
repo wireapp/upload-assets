@@ -1,4 +1,4 @@
-# upload-assets
+# upload-assets ![CI](https://github.com/wireapp/upload-assets/workflows/CI/badge.svg)
 
 GitHub Action to upload multiple assets to a release.
 

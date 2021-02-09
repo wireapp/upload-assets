@@ -62,7 +62,8 @@
     "lint:code": "eslint --ext .ts .",
     "lint:other": "yarn prettier --list-different",
     "precommit": "yarn build && git add dist",
-    "prettier": "prettier \"**/*.{json,md,css,yml,html}\""
+    "prettier": "prettier \"**/*.{json,md,css,yml,html}\"",
+    "test": "yarn lint"
   },
   "version": "1.1.0"
 }
