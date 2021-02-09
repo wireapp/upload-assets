@@ -59,7 +59,7 @@
     "fix:code": "yarn lint:code --fix",
     "fix:other": "yarn prettier --write",
     "lint": "yarn lint:code && yarn lint:other",
-    "lint:code": "eslint --ignore-path .gitignore --ext .ts .",
+    "lint:code": "eslint --ext .ts .",
     "lint:other": "yarn prettier --list-different",
     "precommit": "yarn build && git add dist",
     "prettier": "prettier \"**/*.{json,md,css,yml,html}\""

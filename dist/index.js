@@ -7994,6 +7994,25 @@ function wrappy (fn, cb) {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8003,36 +8022,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(2186));
-const github_1 = __importDefault(__nccwpck_require__(5438));
-const glob_1 = __importDefault(__nccwpck_require__(8090));
-const fs_1 = __importDefault(__nccwpck_require__(5747));
-const path_1 = __importDefault(__nccwpck_require__(5622));
-const contentLength = (filePath) => __awaiter(void 0, void 0, void 0, function* () { return (yield fs_1.default.promises.stat(filePath)).size; });
-const readFile = (filePath) => __awaiter(void 0, void 0, void 0, function* () { return fs_1.default.promises.readFile(filePath); });
+const core = __importStar(__nccwpck_require__(2186));
+const github = __importStar(__nccwpck_require__(5438));
+const glob = __importStar(__nccwpck_require__(8090));
+const fs = __importStar(__nccwpck_require__(5747));
+const path = __importStar(__nccwpck_require__(5622));
+const contentLength = (filePath) => __awaiter(void 0, void 0, void 0, function* () { return (yield fs.promises.stat(filePath)).size; });
+const readFile = (filePath) => __awaiter(void 0, void 0, void 0, function* () { return fs.promises.readFile(filePath); });
 function uploadAssets() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!process.env.GITHUB_TOKEN) {
-                throw new Error('Not GITHUB_TOKEN environment variable specified');
+                throw new Error('No GITHUB_TOKEN environment variable specified');
             }
-            const assetPathsInput = core_1.default.getInput('asset_paths', { required: true });
-            const uploadUrlInput = core_1.default.getInput('upload_url', { required: true });
-            const octokit = github_1.default.getOctokit(process.env.GITHUB_TOKEN);
-            const globber = yield glob_1.default.create(assetPathsInput);
+            const assetPathsInput = core.getInput('asset_paths', { required: true });
+            const uploadUrlInput = core.getInput('upload_url', { required: true });
+            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            const globber = yield glob.create(assetPathsInput);
             const files = yield globber.glob();
-            core_1.default.debug(`Matching files: ${files}`);
+            core.debug(`Matching files: ${files}`);
             const browserDownloadURLs = yield Promise.all(files.map((filePath) => __awaiter(this, void 0, void 0, function* () {
                 const contentType = 'binary/octet-stream';
                 const headers = {
                     'content-length': yield contentLength(filePath),
                     'content-type': contentType,
                 };
-                const name = path_1.default.basename(filePath);
+                const name = path.basename(filePath);
                 console.info(`Uploading ${name}`);
                 const uploadedAsset = yield octokit.repos.uploadReleaseAsset({
                     data: yield readFile(filePath),
@@ -8042,11 +8058,11 @@ function uploadAssets() {
                 });
                 return uploadedAsset.data.browser_download_url;
             })));
-            core_1.default.setOutput('browser_download_urls', JSON.stringify(browserDownloadURLs));
+            core.setOutput('browser_download_urls', JSON.stringify(browserDownloadURLs));
         }
         catch (error) {
             console.error(error);
-            core_1.default.setFailed(error.message);
+            core.setFailed(error.message);
         }
     });
 }

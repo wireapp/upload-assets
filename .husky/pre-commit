@@ -1,2 +1,3 @@
 npx --no-install lint-staged
 yarn dist
+git add dist

@@ -1,8 +1,8 @@
-import core from '@actions/core';
-import github from '@actions/github';
-import glob from '@actions/glob';
-import fs from 'fs';
-import path from 'path';
+import * as core from '@actions/core';
+import * as github from '@actions/github';
+import * as glob from '@actions/glob';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const contentLength = async (filePath: string) => (await fs.promises.stat(filePath)).size;
 const readFile = async (filePath: string) => fs.promises.readFile(filePath);
@@ -10,7 +10,7 @@ const readFile = async (filePath: string) => fs.promises.readFile(filePath);
 async function uploadAssets() {
   try {
     if (!process.env.GITHUB_TOKEN) {
-      throw new Error('Not GITHUB_TOKEN environment variable specified');
+      throw new Error('No GITHUB_TOKEN environment variable specified');
     }
 
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
