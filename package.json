@@ -11,7 +11,7 @@
   "description": "GitHub action to upload multiple assets to a release",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.15.0",
-    "@typescript-eslint/parser": "4.15.0",
+    "@typescript-eslint/parser": "4.22.1",
     "@vercel/ncc": "^0.26.1",
     "@wireapp/eslint-config": "1.8.0",
     "@wireapp/prettier-config": "0.3.0",
