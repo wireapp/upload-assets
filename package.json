@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0",
+    "@actions/github": "^5.0.0",
     "@actions/glob": "^0.1.1"
   },
   "description": "GitHub action to upload multiple assets to a release",
